@@ -1,8 +1,13 @@
-import React from 'react'
-const Square = ({children, isSelected, updateBoard, index}) => {
+export const Square = ({ children, isSelected, updateBoard, index }) => {
   const className = `square ${isSelected ? 'is-selected' : ''}`
+
+  const handleClick = () => {
+    updateBoard(index)
+  }
+
   return (
-    <div  onClick={() => updateBoard(index)} className={className}>{children}</div>
+    <div onClick={handleClick} className={className}>
+      {children}
+    </div>
   )
 }
-export default Square

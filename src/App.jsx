@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import './App.css'
-import Square from './components/Square.jsx'
+import { Square } from './components/Square.jsx'
+import { WinnerModal } from './components/WinnerModal.jsx'
 import { TURNS, WINNER_COMBOS  } from './constants.js'
+
 
 function App() {
   const [board, setBoard] = useState(Array(9).fill(null))
@@ -69,20 +71,10 @@ function App() {
         <Square isSelected={turn === TURNS.O}>{TURNS.O}</Square>
       </section>
 
-    {
-      winner !== null && (
-        <section className='winner'>
-          <div className='text'>
-            <h2 >{winner === false ? 'Empate' : `Gano ${winner}`}</h2>
-            <button onClick={resetGame }>Empezar de nuevo</button>
-            <div className='win'> 
-              {winner && <Square>{winner}</Square>}
-            </div>
-          </div>
-        </section>
-      )
-
-    }
+      <WinnerModal 
+        winner={winner} 
+        resetGame={resetGame}
+      />
     </main>
   )
 }
