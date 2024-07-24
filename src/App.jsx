@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import confetti from 'canvas-confetti'
 import './App.css'
 import { Square } from './components/Square.jsx'
 import { WinnerModal } from './components/WinnerModal.jsx'
@@ -38,11 +39,14 @@ function App() {
     setBoard(newBoard)
     const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X
     setTurn(newTurn)
+    
     const newWinner = checkWinner(newBoard)
 
     if (newWinner) {
+      confetti()
       setWinner(newWinner)
-    }else  if (checkEndGame(newBoard)) {
+      console.log(confetti())
+    } else  if (checkEndGame(newBoard)) {
       setWinner(false)
     }
   }
